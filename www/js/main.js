@@ -17,6 +17,7 @@ let oAPP = parent.oAPP;
 
     oAPP.fn.fnOnInitRendering = () => {
 
+        
         let oApp = new sap.m.App({
 
             pages: oAPP.fn.fnGetPages()
