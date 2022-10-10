@@ -17,6 +17,7 @@ let oAPP = parent.oAPP;
 
     oAPP.fn.fnOnInitRendering = () => {
 
+
         let oApp = new sap.m.App({
 
             pages: oAPP.fn.fnGetPages()
@@ -57,9 +58,54 @@ let oAPP = parent.oAPP;
 
     oAPP.fn.ev_Login = () => {
 
-        sap.m.MessageToast.show("login!!");
-        
+        FB.getLoginStatus(function(res) {
+            debugger;
 
+            // 로그인 하지 않았을 경우.
+            if (res.status !== "connected") {
+
+                FB.login(function(response) {
+
+                    if (response.authResponse) {
+
+                        console.log('Welcome!  Fetching your information.... ');
+
+                        FB.api('/me', function(response) {
+                            console.log('Good to see you, ' + response.name + '.');
+                        });
+
+                    } else {
+
+                        console.log('User cancelled login or did not fully authorize.');
+
+                    }
+                    
+                });
+
+                // FB.api(
+                //     '/5554992271234777',
+                //     'GET', {},
+                //     function(response) {
+                //         debugger;
+
+                //         // Insert your code here
+                //     }
+                // );
+
+                // FB.login(function(response) {
+
+                //     debugger;
+
+                // });
+
+                return;
+            }
+
+
+            // 로그인 했을 경우..
+
+
+        });
 
     };
 
